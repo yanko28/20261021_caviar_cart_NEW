@@ -1,50 +1,31 @@
-# Caviar · cart_NEW
+# Caviar cart
 
-Вёрстка фрейма `cart_NEW` (13383:134) из [Figma Black_Edition](https://www.figma.com/design/2xGiM6QA4vMbH6UqyFTeqy/Black_Edition?node-id=13383-134).
+React + Vite implementation of the Figma frames `20261022_cart_NEW` and `cart_NEW_order_form`.
 
-React + Vite, обычный CSS, без backend, CMS и UI-библиотек.
-
-## Запуск
-
-Node.js 22.12+ (проверено на Node.js 24).
+## Start
+Requires Node.js 22.12 or newer.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Откройте адрес, который Vite покажет в терминале.
-
+## Build
 ```bash
 npm run build
-npm run preview
 ```
 
-Результат production-сборки находится в `dist/`.
+The GitHub Pages workflow builds and publishes every push to main.
 
-## Структура
+- Cart: https://yanko28.github.io/20261021_caviar_cart_NEW/
+- Order form: https://yanko28.github.io/20261021_caviar_cart_NEW/#order
 
-- `src/App.jsx`: карточки, итог заказа, форма и исходные данные товаров.
-- `src/styles.css`: оформление и адаптация к узкому экрану.
-- `public/assets/`: локальные PNG, SVG и файлы Nunito Sans.
+Device, storage and size options work as radio groups. Quantity buttons update the order total. Browser Back returns from the form to the cart with the selected values intact. Prices are demonstration unit prices from Figma; a pricing matrix for alternative configurations has not been supplied.
 
-## Соответствие макету
+All images, SVGs and Nunito Sans fonts are local. Product image layers, header and footer were exported from Figma. Header/footer are raster layers in the original design.
 
-Основной эталон: 1440 × 2393 px. Сохранены тексты, цены, начальные количества, цвета, изображения, поля и кнопки. На узких экранах те же блоки перестраиваются в одну колонку. Отдельного мобильного макета в задаче нет.
+There is no backend or CMS. Form submission performs native field validation and emits a local `caviar:checkout` CustomEvent with the items, total and form values. It does not send or save personal information. Country and payment lists contain the placeholders provided by the design.
 
-Шапка и подвал в исходном фрейме являются растровыми слоями. Они экспортированы из Figma и сохранены локально, включая их существующие надписи и навигацию. Ссылки внутри этих двух изображений статичны, как в исходных слоях. Остальная страница собрана из HTML-элементов и React-компонентов.
+The four initial quantities follow the new design (one of each). The actual initial total is 1,846,900 RUB; the static Figma total of 2,505,900 RUB is inconsistent with those quantities.
 
-Изображения продуктов и сервисные значки экспортированы из соответствующих слоёв с исходным кадрированием, SVG-контролы сохранены отдельно. Все ассеты и шрифты загружаются из проекта; временные адреса Figma и внешние CDN не используются.
-
-## Поведение
-
-- Количество редактируется в пределах 1–99; сумма пересчитывается. Пустое поле количества восстанавливается до 1 при потере фокуса.
-- Крестик удаляет товар. Подпись «4 товара» в эталоне означает число позиций, включая строку с количеством 2.
-- Верхняя кнопка переводит к форме и фокусирует поле имени.
-- Имя, телефон, адрес и согласие проверяются стандартной валидацией браузера.
-- Нижняя кнопка отменяет стандартную отправку формы и генерирует локальное DOM-событие `caviar:checkout` с введёнными данными. Заказ и платёж не создаются; сетевых запросов и хранения персональных данных нет.
-- Кнопка связи открывает письмо на адрес `caviar@caviar-phones.ru`, указанный в подвале макета.
-- В списках оставлены только значения, видимые в макете. Каталог вариантов, список стран и способы оплаты в исходнике не заданы. Их можно заполнить внутри компонентов `Select` при подключении реальных данных.
-- После обновления страницы корзина возвращается к исходному состоянию макета.
-
-Backend, аналитика, платёжные интеграции, дополнительные экраны и сообщения об успешном заказе не добавлялись.
+Nunito Sans is provided under the SIL Open Font License in `public/assets/fonts/OFL.txt`.
